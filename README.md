@@ -23,6 +23,13 @@ Before you begin, ensure you have the following:
    cd issue-cloning-tool
 2. **Create PAT**
     Create a github personal access token by going to profile > settings > developer settings > tokens > create
-    create an .env file and add GITHUB_TOKEN=your_personal_access_token
+    create an .env file with ```bash touch .env
+    ```bash
+    GITHUB_TOKEN=your_personal_access_token
 3. **Enter Repo Names**
-
+    Add source and destination repos to the .env file
+    ```bash
+    SOURCE_REPO=owner_name/your_source_repo
+    DEST_REPO=owner_name/your_destination_repo
+4. **Run the Script**
+    Run with python3 cloner.py

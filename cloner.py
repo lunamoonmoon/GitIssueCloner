@@ -6,10 +6,8 @@ load_dotenv()
 
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 BASE_URL = 'https://api.github.com'
-
-# Source and destination repositories
-SOURCE_REPO = 'owner/source-repo'
-DEST_REPO = 'owner/destination-repo'
+SOURCE_REPO = os.getenv('SOURCE_REPO')
+DEST_REPO = os.getenv('DEST_REPO')
 
 # Headers for GitHub API requests
 HEADERS = {
@@ -52,9 +50,7 @@ def clone_issues():
         body = issue['body']
         labels = [label['name'] for label in issue.get('labels', [])]
         assignees = [assignee['login'] for assignee in issue.get('assignees', [])]
-        # Create issue in destination repo
         new_issue = create_issue(DEST_REPO, title, body, labels, assignees)
-        # Copy comments
         comments = get_comments(SOURCE_REPO, issue['number'])
         for comment in comments:
             create_comment(DEST_REPO, new_issue['number'], comment['body'])
